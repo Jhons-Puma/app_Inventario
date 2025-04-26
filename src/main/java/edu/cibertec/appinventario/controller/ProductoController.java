@@ -6,10 +6,7 @@ import edu.cibertec.appinventario.dto.ProductoResponseDto;
 import edu.cibertec.appinventario.service.ProductoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +28,8 @@ public class ProductoController {
     private final ProductoService productoService;
 
     @Operation(summary = "Crear nuevo producto")
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Producto creado exitosamente"),
+            @ApiResponse(responseCode = "201", description = "Producto creado exitosamente")
             @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
-    })
     @PostMapping
     public ResponseEntity<ProductoResponseDto> create(
             @Valid @RequestBody ProductoRequestDto requestDto) {
@@ -45,10 +40,8 @@ public class ProductoController {
     }
 
     @Operation(summary = "Obtener producto por ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Producto encontrado"),
+            @ApiResponse(responseCode = "200", description = "Producto encontrado")
             @ApiResponse(responseCode = "404", description = "Producto no encontrado")
-    })
     @GetMapping("/{id}")
     public ResponseEntity<ProductoResponseDto> getById(
             @Parameter(description = "ID del producto") @PathVariable Integer id) {
@@ -59,11 +52,9 @@ public class ProductoController {
     }
 
     @Operation(summary = "Actualizar producto existente")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Producto actualizado exitosamente"),
-            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos"),
+            @ApiResponse(responseCode = "200", description = "Producto actualizado exitosamente")
+            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
             @ApiResponse(responseCode = "404", description = "Producto no encontrado")
-    })
     @PutMapping("/{id}")
     public ResponseEntity<ProductoResponseDto> update(
             @Parameter(description = "ID del producto") @PathVariable Integer id,
@@ -75,10 +66,8 @@ public class ProductoController {
     }
 
     @Operation(summary = "Eliminar producto")
-    @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Producto eliminado exitosamente"),
+            @ApiResponse(responseCode = "204", description = "Producto eliminado exitosamente")
             @ApiResponse(responseCode = "404", description = "Producto no encontrado")
-    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @Parameter(description = "ID del producto") @PathVariable Integer id) {
@@ -111,10 +100,8 @@ public class ProductoController {
     }
 
     @Operation(summary = "Buscar producto por código")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Producto encontrado"),
+            @ApiResponse(responseCode = "200", description = "Producto encontrado")
             @ApiResponse(responseCode = "404", description = "Producto no encontrado")
-    })
     @GetMapping("/codigo/{codigo}")
     public ResponseEntity<ProductoResponseDto> findByCodigo(
             @Parameter(description = "Código del producto") @PathVariable String codigo) {
@@ -193,11 +180,9 @@ public class ProductoController {
     }
 
     @Operation(summary = "Actualizar stock de un producto")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Stock actualizado exitosamente"),
-            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos o stock insuficiente"),
+            @ApiResponse(responseCode = "200", description = "Stock actualizado exitosamente")
+            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos o stock insuficiente")
             @ApiResponse(responseCode = "404", description = "Producto no encontrado")
-    })
     @PatchMapping("/{id}/actualizar-stock")
     public ResponseEntity<ProductoResponseDto> actualizarStock(
             @Parameter(description = "ID del producto") @PathVariable Integer id,

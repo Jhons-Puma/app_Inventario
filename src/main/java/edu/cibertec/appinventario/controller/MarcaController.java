@@ -7,10 +7,7 @@ import edu.cibertec.appinventario.dto.PageResponseDto;
 import edu.cibertec.appinventario.service.MarcaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +28,8 @@ public class MarcaController {
     private final MarcaService marcaService;
 
     @Operation(summary = "Crear nueva marca")
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Marca creada exitosamente"),
-            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
-    })
+        @ApiResponse(responseCode = "201", description = "Marca creada exitosamente")
+        @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
     @PostMapping
     public ResponseEntity<MarcaResponseDto> create(
             @Valid @RequestBody MarcaRequestDto requestDto) {
@@ -45,10 +40,8 @@ public class MarcaController {
     }
 
     @Operation(summary = "Obtener marca por ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Marca encontrada"),
-            @ApiResponse(responseCode = "404", description = "Marca no encontrada")
-    })
+        @ApiResponse(responseCode = "201", description = "Marca creada exitosamente")
+        @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
     @GetMapping("/{id}")
     public ResponseEntity<MarcaResponseDto> getById(
             @Parameter(description = "ID de la marca") @PathVariable Integer id) {
@@ -59,11 +52,11 @@ public class MarcaController {
     }
 
     @Operation(summary = "Actualizar marca existente")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Marca actualizada exitosamente"),
-            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos"),
-            @ApiResponse(responseCode = "404", description = "Marca no encontrada")
-    })
+
+        @ApiResponse(responseCode = "200", description = "Marca actualizada exitosamente")
+        @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
+        @ApiResponse(responseCode = "404", description = "Marca no encontrada")
+
     @PutMapping("/{id}")
     public ResponseEntity<MarcaResponseDto> update(
             @Parameter(description = "ID de la marca") @PathVariable Integer id,
@@ -75,10 +68,10 @@ public class MarcaController {
     }
 
     @Operation(summary = "Eliminar marca")
-    @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Marca eliminada exitosamente"),
+
+            @ApiResponse(responseCode = "204", description = "Marca eliminada exitosamente")
             @ApiResponse(responseCode = "404", description = "Marca no encontrada")
-    })
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @Parameter(description = "ID de la marca") @PathVariable Integer id) {

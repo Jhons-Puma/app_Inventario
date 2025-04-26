@@ -7,10 +7,7 @@ import edu.cibertec.appinventario.dto.PageResponseDto;
 import edu.cibertec.appinventario.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +28,8 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @Operation(summary = "Crear nueva categoría")
-    @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "Categoría creada exitosamente"),
+            @ApiResponse(responseCode = "201", description = "Categoría creada exitosamente")
             @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
-    })
     @PostMapping
     public ResponseEntity<CategoriaResponseDto> create(
             @Valid @RequestBody CategoriaRequestDto requestDto) {
@@ -45,10 +40,8 @@ public class CategoriaController {
     }
 
     @Operation(summary = "Obtener categoría por ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Categoría encontrada"),
+            @ApiResponse(responseCode = "200", description = "Categoría encontrada")
             @ApiResponse(responseCode = "404", description = "Categoría no encontrada")
-    })
     @GetMapping("/{id}")
     public ResponseEntity<CategoriaResponseDto> getById(
             @Parameter(description = "ID de la categoría") @PathVariable Integer id) {
@@ -59,11 +52,9 @@ public class CategoriaController {
     }
 
     @Operation(summary = "Actualizar categoría existente")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Categoría actualizada exitosamente"),
-            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos"),
+            @ApiResponse(responseCode = "200", description = "Categoría actualizada exitosamente")
+            @ApiResponse(responseCode = "400", description = "Datos de entrada inválidos")
             @ApiResponse(responseCode = "404", description = "Categoría no encontrada")
-    })
     @PutMapping("/{id}")
     public ResponseEntity<CategoriaResponseDto> update(
             @Parameter(description = "ID de la categoría") @PathVariable Integer id,
@@ -75,10 +66,8 @@ public class CategoriaController {
     }
 
     @Operation(summary = "Eliminar categoría")
-    @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Categoría eliminada exitosamente"),
+            @ApiResponse(responseCode = "204", description = "Categoría eliminada exitosamente")
             @ApiResponse(responseCode = "404", description = "Categoría no encontrada")
-    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
             @Parameter(description = "ID de la categoría") @PathVariable Integer id) {
